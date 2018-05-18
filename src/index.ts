@@ -3,9 +3,9 @@ for (let inputIndex = $inputs.length - 1; inputIndex >= 0; inputIndex--) {
   const $input = $inputs[inputIndex];
   // ...
 }
-const $checkboxes = document.getElementsByClassName('input--checkbox');
-for (let checkboxIndex = $checkboxes.length - 1; checkboxIndex >= 0; checkboxIndex--) {
-  const $checkbox = $checkboxes[checkboxIndex];
+const $radiobuttons = document.getElementsByClassName('input--radio');
+for (let radioIndex = $radiobuttons.length - 1; radioIndex >= 0; radioIndex--) {
+  const $radio = $radiobuttons[radioIndex];
   // ...
 }
 setTimeout(() => { /* TODO: prevent this timeout */
