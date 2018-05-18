@@ -115,37 +115,39 @@
   }
 }
 
-.input--checkbox {
+.input--radio {
   user-select: none;
   input {
     display: none;
   }
   .input__box {
-    border-radius: calc(var(--input-size) * .266);
+    border-radius: var(--input-size);
     opacity: 0.9;
-    &:before {
-      transition: .05s width linear;
-      transition-delay: .1s;
-      --rotation: 45deg;
-      --translate-top: 4px;
-      --translate-left: 3px;
-    }
-    &:after {
-      transition: .1s width linear;
-      transition-delay: 0s;
-      --rotation: -45deg;
-      --translate-top: -2px;
-      --translate-left: 8px;
-    }
+    position: relative;
+    overflow: hidden;
     &:before, &:after {
       content: '';
+      display: block;
       position: absolute;
-      transform-origin: 0% 100%;
-      width: 0px;
-      border-bottom-color: var(--input-color--line);
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      transform: rotate(var(--rotation)) translateX(var(--translate-top)) translateY(var(--translate-left));
+      top: 0;
+      left: 0;
+      transform-origin: 38% 38%;
+      transform: scale(0);
+      width: var(--input-size);
+      height: var(--input-size);
+      border-color: transparent;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: var(--input-size);
+      transition: .2s transform ease;
+    }
+    &:before {
+      transition-delay: .2s;
+      background-color: var(--input-color);
+    }
+    &:after {
+      transition-delay: 0s;
+      background-color: var(--input-color--line);
     }
   }
   label {
@@ -154,131 +156,32 @@
       opacity: 1;
     }
   }
-
-  /* TODO: use generic calculated values */
-  &.input--large {
-    .input__box {
-      &:before {
-        --translate-top: 5px;
-      }
-
-      &:after {
-        --translate-left: 10px;
-      }
-    }
-  }
-  &.input--small {
-    .input__box {
-      &:before {
-        --translate-top: 4px;
-      }
-
-      &:after {
-        --translate-left: 7px;
-      }
-    }
-  }
-  &.input--xsmall {
-    .input__box {
-      &:before {
-        --translate-top: 3px;
-        --translate-left: 2px;
-      }
-
-      &:after {
-        --translate-left: 5.5px;
-      }
-    }
-  }
   input:checked + .input__box {
-    background-color: var(--input-color);
     transition-delay: 0s;
     animation-name: wobble;
     animation-duration: .3s;
     animation-timing-function: ease;
     &:before {
-      width: calc(var(--input-size) / 2 - 2px);
       transition-delay: 0s;
+      transform: scale(1.1);
     }
     &:after {
-      width: calc(var(--input-size) / 2 + 2px);
-      transition-delay: .05s;
+      transition-delay: .2s;
+      transform: scale(.33);
     }
   }
   input:disabled + .input__box,
-  input:disabled + .input__box + span {
+  input:disabled + .input__box+span {
     opacity: .5;
-  }
-
-  /* TODO: use generic calculated values */
-  &.input--cross {
-    .input__box {
-      &:before {
-        --translate-top: 2.25px;
-        --translate-left: 0px;
-      }
-
-      &:after {
-        --translate-top: -4px;
-        --translate-left: 7.25px;
-      }
-    }
-
-    &.input--large {
-      .input__box {
-        &:before {
-          --translate-top: 3.25px;
-          --translate-left: 0px;
-        }
-
-        &:after {
-          --translate-top: -5px;
-          --translate-left: 9.25px;
-        }
-      }
-    }
-
-    &.input--small {
-      .input__box {
-        &:before {
-          --translate-top: 2.25px;
-          --translate-left: 0px;
-        }
-
-        &:after {
-          --translate-top: -3px;
-          --translate-left: 6.25px;
-        }
-      }
-    }
-
-    &.input--xsmall {
-      .input__box {
-        &:before {
-          --translate-top: 2.25px;
-          --translate-left: 0px;
-        }
-
-        &:after {
-          --translate-top: -2.5px;
-          --translate-left: 5.75px;
-        }
-      }
-    }
-
-    input:checked + .input__box {
-      &:before,
-      &:after {
-        width: calc(var(--input-size) - 2px);
-      }
-      &:before {
-        transition-delay: .15s;
-      }
-    }
   }
 }
 
-/* pen design */
+/* general design */
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
 article {
   font-family: 'Gotham Rounded SSm A', 'Gotham Rounded SSm B', 'Gotham Rounded A', 'Gotham Rounded B', 'proxima-nova-soft', Verdana, Geneva, sans-serif;
   color: var(--input-color--font);
